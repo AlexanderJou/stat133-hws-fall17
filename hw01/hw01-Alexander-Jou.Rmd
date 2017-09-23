@@ -1,0 +1,193 @@
+---
+title: "hw01-Alexander-Jou"
+output: github_document
+---
+
+```{r}
+#load data file
+load("data/nba2017-salary-points.RData")
+```
+
+
+```{r}
+ls()
+```
+#A bit of data preprocessing
+```{r}
+#salary in millions
+salary_mil= salary/1000000
+salary_mil
+```
+
+```{r}
+experience_integer = as.integer(replace(experience, experience == "R" , 0))
+experience_integer
+```
+
+```{r}
+fposition = factor(position, labels = c("center", "power forward", "small forward", "shooting gaurd", "point gaurd"))
+table(fposition)
+```
+#Scatterplot of Points and Salary
+```{r}
+plot(points, salary_mil , xlab="points" , ylab= "salary_mil", main = "Points and Salary", pch = 20, cex= 1, col= "magenta")
+
+
+```
+#Correlation between Points and Salary
+```{r}
+n = length(points)
+n
+```
+
+```{r}
+x = sum(points)/n
+x
+```
+
+```{r}
+y = sum(salary_mil)/n
+y
+```
+
+```{r}
+var_x= (1/(n-1))*sum((points-x)^2)
+var_x
+```
+```{r}
+var_y = (1/(n-1))* sum((salary_mil-y)^2)
+var_y
+```
+
+```{r}
+sd_x = sqrt(var_x)
+sd_x
+```
+
+```{r}
+sd_y = sqrt(var_y)
+sd_y
+```
+
+```{r}
+cov_x_y = (1/(n-1))*sum((points-x)*(salary_mil-y))
+cov_x_y
+```
+
+```{r}
+cor_X_Y = (cov_x_y)/((sd_y)*(sd_x))
+cor_X_Y
+```
+#Simple Linear Regression
+```{r}
+b1 = cor_X_Y * (sd_y/sd_x)
+b1
+```
+
+```{r}
+b0 = y - (b1 * x)
+b0
+```
+```{r}
+Yfit = b0 + (b1 * points)
+```
+
+#Answers to the following questions
+```{r}
+summary(Yfit)
+```
+# The regression equation is a line based off all the points that predicts where a y value will be, given the x value.
+
+#The equation is Yfit = b0 + (b1 * points)
+
+#The slope coefficient b1 tells us how much we can expect in a increase in salary (in millions) for a one point score increase. 
+
+#The intercept term b0 is how much we would expect a player to make if they scored 0 points. 
+
+#Predicted Salaries:
+```{r}
+b0
+b0 + (b1 *100)
+b0 + (b1 * 500)
+b0 + (b1 *1000)
+b0 + (b1 *2000)
+```
+#Plotting the Linear Regression Line
+```{r}
+plot(points, salary_mil,xlab = "points", ylab= "Salary in millions", main= "Points and Salary", col = "green", pch = 20, cex =1)
+
+abline(a = b0, b= b1, col = "magenta", lwd = 4)
+text(2100, 15, col = "magenta", cex= 1.15, "Regression")
+
+lines(lowess(points, salary_mil, f=.3), col = "blue", lwd = 4)
+text(1750, 25, col= "blue" , cex = 1.15, "Lowess")
+
+```
+#Regression Residuals and Coefficient of Determination R^2
+```{r}
+e = salary_mil - Yfit
+summary(e)
+```
+
+```{r}
+RSS = sum(e^2)
+RSS
+```
+```{r}
+TSS = sum((salary_mil - y) ^ 2)
+TSS
+```
+
+```{r}
+R2 = 1 - (RSS / TSS)
+R2
+```
+#Exploring Position and Experience
+```{r}
+plot(experience_integer, salary_mil, xlab = "experience", ylab = "salary_mil", main =  "Experience vs Salary", col = "black", pch = 20, cex = 1 )
+lines(lowess(experience_integer, salary_mil, f=.3), col = "blue", lwd = 4)
+
+#It looks like from 0-5 years the salary increases every year but after that it decreased for every year in experience. No first or second year players make over 10 million. From this scatterplot it seems experience is somewhat related to salary but not a high correlation. 
+```
+
+```{r}
+
+library("scatterplot3d") 
+```
+
+```{r}
+scatterplot3d(points, experience_integer, salary, pch = 1)
+#From this scatterplot it seems that salary isn't too correlated to salary besides most rookies making little amounts of money. There is more of a relation between points and salary as most players that score a lot of points have high salaries. Most players are clubped near the bottom in terms of points, salary, and experience with a few far outliers in each.
+```
+
+
+```{r}
+boxplot (salary_mil ~ position, col = "blue", xlab = "Position", ylab = "Salary in Millions", main = "Boxplot of Salary Vs Position")
+
+#The average salary for each position is about the same but the upper quartile for centers is the highest with point guard having the lowest upper quartile. The minimum is the same for all positions with a few outliers for each position except for center. Position is somewaht related to salary but not a high correlation.
+```
+
+```{r}
+#Comments and Reflections
+
+#The hardest part was formatting the graphs because I didn't quite know what scales and font sizes to use. 
+
+#Writing the formulas and computing equations were easier because it was simliar to typing it into a calculator.
+
+#I used git for the last lab and I feel more conifdent with it now.
+
+#I used GitHub for the last lab as well and I understand how to commit files to it now. 
+
+#I looked online a lot for help on certain commands and syntax as I sometimes forgot how to properly format my code.
+
+#It took be about 4 hours to complete this homework.
+
+#The most time consuming part was the graphs.
+
+#I still think I need to learn the basic syntax rules as I often forget commas and parentheses in my arguments.
+
+#The most frustrating part was my code not working because I was missing something small in the syntax.
+
+#I'm proud that I finished my first homework assignment and actually picked up a lot of information.
+```
+
