@@ -1,0 +1,134 @@
+---
+title: "Hw02"
+output: github_document
+---
+#Creating a Data Dictionary
+```{r}
+github <- "https://github.com/ucb-stat133/stat133-fall-2017/raw/master/"
+file <- "data/nba2017-player-statistics.csv"
+csv <- paste0(github, file)
+download.file(url = csv, destfile = 'nba2017-player-statistics.csv')
+```
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+library(readr)
+```
+
+#Import the data in R
+
+```{r}
+nba <- read.csv('nba2017-player-statistics.csv', stringsAsFactors = FALSE)
+str('nba2017-player-statistics.csv')
+```
+
+```{r}
+nba_one <- read_csv('nba2017-player-statistics.csv')
+str('nba2017-player-statistics.csv')
+```
+```{r}
+system.time(nba_two <- read.csv('nba2017-player-statistics.csv', header = TRUE,colClasses = c("character","character","factor" , "character", "double", "integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer","integer")))
+```
+
+```{r}
+str(nba_two)
+```
+#Right after importing the data
+```{r}
+nba_int <- mutate(nba_two, Experience = as.integer(replace(Experience, Experience == "R" , 0)))
+nba_int
+
+```
+
+```{r}
+library(dplyr)
+```
+
+```{r}
+###Adding new statistics
+nba_update <- mutate(nba_int, Missed_FG = FGA - FGM, Missed_FT = FTA - FTM, PTS = (3 * Points3 )+ (2 * Points2) + FTM, REB = OREB + DREB, MPG = MIN/GP)
+
+nba_update
+```
+
+```{r}
+###Computing EEF
+nba_eff <- mutate(nba_update, EFF = (PTS + REB + AST + STL + BLK - Missed_FG - Missed_FT - TO) / GP)
+nba_eff
+```
+
+```{r}
+EFF = as.numeric(as.integer(nba_eff$EFF))
+```
+
+```{r}
+###Summary for EFF
+summary(EFF)
+```
+
+```{r}
+###Histogram
+hist(EFF)
+```
+
+```{r}
+###Top EFF
+eff_org = arrange(nba_eff, desc(EFF))
+top_eff = slice(eff_org, 1:10)
+top_eff
+```
+
+```{r}
+neg_eff = filter(nba_eff, EFF < 0)
+name_neg_eff = select(neg_eff, Player)
+name_neg_eff
+```
+
+```{r}
+###Correlation
+cor(EFF, nba_eff$PTS)
+cor(EFF, nba_eff$REB)
+cor(EFF, nba_eff$AST)
+cor(EFF, nba_eff$STL)
+cor(EFF, nba_eff$BLK)
+cor(EFF, -(nba_eff$Missed_FG))
+cor(EFF, -(nba_eff$Missed_FT))
+cor(EFF, -(nba_eff$TO))
+```
+```{r}
+###Barplot
+corre_eff= c(cor(EFF, nba_eff$PTS), cor(EFF, nba_eff$REB), cor(EFF, nba_eff$AST), cor(EFF, nba_eff$STL), cor(EFF, nba_eff$BLK), cor(EFF, -(nba_eff$Missed_FG)), cor(EFF, -(nba_eff$Missed_FT)), cor(EFF, -(nba_eff$TO)))
+barplot(corre_eff, main = "Correlations between Player Statd and EFF", names.arg = c("PTS", "REB", "STL", "AST", "BLK", "Missed_FT", "Missed_FG", "TO"), cex.names = .4)
+```
+
+#Effiecincy and Salary
+```{r}
+###Scatter Plot
+plot(EFF, nba_eff$Salary, main = "EFF vs Salary", xlab = "EFF", ylab = "Salary")
+lines(lowess(EFF, nba_eff$Salary), col = "red")
+cor(EFF, nba_eff$Salary)
+```
+```{r}
+### Salary and efficiency has some correlation but it is not that stong. There are a lot of points on the graph that are far from the lowess line and the correlation coefficient is less than .7. Many Players have a high EFF but a much lower salary then the lowess line projects. 
+```
+
+```{r}
+###Adjusting for experience
+players2 <- filter(nba_eff, "MPG" > 20)
+plot(players2$EFF, players2$Salary, xlab= "EFF", ylab= "salary", main ="Experienced players EFF vs. Salary")
+lines(lowess(players2$EFF, players2$Salary), col= "yellow")
+cor(players2$EFF, players2$Salary)
+```
+```{r}
+###It seems that for the players with EFF lower than 13 that salary increases minimally for increase in EFF. However, after 13 each EFF increase increases salary greatly. The correlation coefficient is similar to the last graph so that leads me to believe that EFF is still not the best indicator of Salary.
+```
+
+#Comments
+
+```{r}
+###I think that overall this lab was easier than the last one. I still needed to refer to slides and the internet for some syntax help but in general I was able to complete this lab pretty efficiently. I completed this lab in about 4 hours and the most consuming part was probably figuring out how to change the vectors into numeric vectors. I think understood this lab pretty well and it wasn't too frustrating. I'm proud that I could properly sort through the data and take the appropiate items out of the data set and put them on a graph or some other sort of analysis.
+```
+
