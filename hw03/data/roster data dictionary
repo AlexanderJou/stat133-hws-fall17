@@ -1,0 +1,10 @@
+Title: Roster Data dictionary
+
+player: player name
+team: team that player plays for
+position: position that player plays (C, PF, SF, SG, PG)
+height: height in inches
+weight: weight in pounds 
+age: age of player
+experience: years played in the NBA
+salary: annual salary in dollars

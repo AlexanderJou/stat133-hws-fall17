@@ -1,0 +1,25 @@
+Title: stats data dictionary
+
+player: player name
+games_played: games played in the regular season
+minutes: minutes played in the season
+field_goals_made: number of field goals made
+field_goals_atts: number of field goal attempts
+field_goals_perc: field goal percentage
+points3_atts: 3 pointers attempted
+points3_made: 3 pointers made
+points3_perc: 3 point percentage
+points2_atts: 2 pointers attempted
+points2_made: 2 pointers made
+points2_perc: 2 point percentage
+points2_atts: Free throws attempted
+points2_made: Free throws made
+points2_perc: Free throws percentage
+off_rebounds: Offensive rebounds
+def_rebounds: Defensive rebounds
+assists: number of assists in the season
+steals: number of steals in the season
+blocks: number of blocks
+turnovers: number of turnovers
+fouls: number of fouls
+
