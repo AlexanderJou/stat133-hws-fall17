@@ -1,0 +1,26 @@
+✔ | OK F W S | Context
+⠏ |  0       | Remove Missing⠋ |  1       | Remove Missing⠙ |  2       | Remove Missing⠹ |  3       | Remove Missing⠸ |  4       | Remove Missing✔ |  4       | Remove Missing
+⠏ |  0       | Get Minimimum⠋ |  1       | Get Minimimum⠙ |  2       | Get Minimimum⠹ |  3       | Get Minimimum⠸ |  4       | Get Minimimum⠼ |  5       | Get Minimimum✔ |  5       | Get Minimimum
+⠏ |  0       | Get Maximum⠋ |  1       | Get Maximum⠙ |  2       | Get Maximum⠹ |  3       | Get Maximum⠸ |  4       | Get Maximum⠼ |  5       | Get Maximum✔ |  5       | Get Maximum
+⠏ |  0       | Get Range⠋ |  1       | Get Range⠙ |  2       | Get Range⠹ |  3       | Get Range⠸ |  4       | Get Range⠼ |  5       | Get Range✔ |  5       | Get Range
+⠏ |  0       | Get 10th Percentile⠋ |  1       | Get 10th Percentile⠙ |  2       | Get 10th Percentile⠹ |  3       | Get 10th Percentile⠸ |  4       | Get 10th Percentile⠼ |  5       | Get 10th Percentile✔ |  5       | Get 10th Percentile
+⠏ |  0       | Get 90th Percentile⠋ |  1       | Get 90th Percentile⠙ |  2       | Get 90th Percentile⠹ |  3       | Get 90th Percentile⠸ |  4       | Get 90th Percentile⠼ |  5       | Get 90th Percentile✔ |  5       | Get 90th Percentile
+⠏ |  0       | Get Median⠋ |  1       | Get Median⠙ |  2       | Get Median⠹ |  3       | Get Median⠸ |  4       | Get Median⠼ |  5       | Get Median✔ |  5       | Get Median
+⠏ |  0       | Get Average⠋ |  1       | Get Average⠙ |  2       | Get Average⠹ |  3       | Get Average⠸ |  4       | Get Average⠼ |  5       | Get Average✔ |  5       | Get Average
+⠏ |  0       | Get Stdev⠋ |  1       | Get Stdev⠙ |  2       | Get Stdev⠹ |  3       | Get Stdev⠸ |  4       | Get Stdev⠼ |  5       | Get Stdev✔ |  5       | Get Stdev
+⠏ |  0       | Get 1st Quartile⠋ |  1       | Get 1st Quartile⠙ |  2       | Get 1st Quartile⠹ |  3       | Get 1st Quartile⠸ |  4       | Get 1st Quartile✔ |  4       | Get 1st Quartile
+⠏ |  0       | Get 3rd Quartile⠋ |  1       | Get 3rd Quartile⠙ |  2       | Get 3rd Quartile⠹ |  3       | Get 3rd Quartile⠸ |  4       | Get 3rd Quartile⠼ |  5       | Get 3rd Quartile✔ |  5       | Get 3rd Quartile
+⠏ |  0       | Count Missing Values⠋ |  1       | Count Missing Values⠙ |  2       | Count Missing Values⠹ |  3       | Count Missing Values⠸ |  4       | Count Missing Values✔ |  4       | Count Missing Values
+⠏ |  0       | Drop Lowest Value⠋ |  1       | Drop Lowest Value⠙ |  2       | Drop Lowest Value⠹ |  3       | Drop Lowest Value⠸ |  4       | Drop Lowest Value✔ |  4       | Drop Lowest Value
+⠏ |  0       | Rescaling to 100⠋ |  1       | Rescaling to 100⠙ |  2       | Rescaling to 100⠹ |  3       | Rescaling to 100⠸ |  4       | Rescaling to 100✔ |  4       | Rescaling to 100
+⠏ |  0       | Homework Score⠋ |  1       | Homework Score⠙ |  2       | Homework Score⠹ |  3       | Homework Score⠸ |  4       | Homework Score✔ |  4       | Homework Score
+⠏ |  0       | Quiz Score⠋ |  1       | Quiz Score⠙ |  2       | Quiz Score⠹ |  3       | Quiz Score⠸ |  4       | Quiz Score✔ |  4       | Quiz Score
+⠏ |  0       | Lab Score⠋ |  1       | Lab Score⠙ |  2       | Lab Score⠹ |  3       | Lab Score⠸ |  4       | Lab Score✔ |  4       | Lab Score
+
+══ Results ══════════════════════════════════════════════════════════════════
+Duration: 0.2 s
+
+OK:       77
+Failed:   0
+Warnings: 0
+Skipped:  0
