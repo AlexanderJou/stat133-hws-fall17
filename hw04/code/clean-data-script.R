@@ -1,3 +1,10 @@
+---
+title: "Clean-data-script"
+author: "Alexander Jou"
+date: "11/26/2017"
+output: html_document
+---
+
 dat = read.csv('rawscores.csv', stringsAsFactors = FALSE)
 dim(dat)
 str(dat)
